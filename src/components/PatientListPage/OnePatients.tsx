@@ -14,12 +14,15 @@ const OnePatients = () => {
       setPatient(patient);
     };
     void fetchPatientList();
-  } );
+  } , [id]);
+  console.log(patient);
   return(
     <>
       <h2>{patient?.name} {patient?.gender === 'male' && <Male/>} {patient?.gender === 'female' && <Female/>} {patient?.gender === 'other' && <Transgender/>}</h2>
       <p>snn : {patient?.ssn}</p>
       <p>occupation : {patient?.occupation}</p>
+      <h4>Entries</h4>
+      {patient?.entries.map(e => <div key={e.id}><p>{e.date} {e.description}</p><ul>{e.diagnosisCodes.map(c => <li>{c}</li>)}</ul></div>)}
     </>
     
   );
